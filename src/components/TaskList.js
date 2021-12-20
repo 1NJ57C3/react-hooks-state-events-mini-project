@@ -1,9 +1,13 @@
 import React from "react";
+import Task from "./Task"
 
-function TaskList() {
+function TaskList({ tasks, handleTaskRemoval, selectedCategory }) {
+  
+  const displayedTasks = tasks.filter(task => selectedCategory === "All" ? true : task.category === selectedCategory);
+  
   return (
     <div className="tasks">
-      {/* display a list of tasks using Task component */}
+      {displayedTasks.map(task => ( <Task task={task} key={task.text} handleTaskRemoval={handleTaskRemoval} /> ))}
     </div>
   );
 }
